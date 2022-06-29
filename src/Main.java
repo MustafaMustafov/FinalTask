@@ -1,5 +1,6 @@
 import java.util.Scanner;
-import java.lang.Math;
+
+import static java.lang.Math.abs;
 
 public class Main {
 
@@ -35,7 +36,7 @@ public class Main {
         for (int i = 1; i < arrayOfWords.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (arrayOfWords[i].equalsIgnoreCase(arrayOfWords[j])) {
-                    break;
+                    continue;
                 }
                 if (i == j) {
                     res++;
@@ -75,6 +76,19 @@ public class Main {
         System.out.println("  4. Average Sentence length: " + averageWordInSentence(arrayOfWords, countOfSentences));
     }
 
+    //abs(F1T1-F1T2) * 11 + abs(F2T1-F2T2) * 33 + abs(F3T1-F3T2) * 50 + abs(F4T1-F4T2) * 0.4;
+    public static double printSimilarity (String[] arrayOfWords1, String[] arrayOfWords2, int countOfSentences1, int countOfSentences2) {
+        double F1T1 = averageLengthOfWords(arrayOfWords1);
+        double F1T2 = averageLengthOfWords(arrayOfWords2);
+        double F2T1 = typeTokenRatio(arrayOfWords1);
+        double F2T2 = typeTokenRatio(arrayOfWords2);
+        double F3T1 = hapLegoRatio(arrayOfWords1);
+        double F3T2 = hapLegoRatio(arrayOfWords2);
+        double F4T1 = averageWordInSentence(arrayOfWords1, countOfSentences1);
+        double F4T2 = averageWordInSentence(arrayOfWords2, countOfSentences2);
+        return (abs(F1T1-F1T2) * a) + (abs(F2T1-F2T2) * b) + (abs(F3T1-F3T2) * c) + (abs(F4T1-F4T2) * d);
+    }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter first text: ");
@@ -91,6 +105,7 @@ public class Main {
         String[] arrayOfWords2 = splitTextToWordsWithoutPunctuation(secondText);
         int countOfSentences2 = countOfSentences(secondText);
         printFeatures(arrayOfWords2,countOfSentences2);
-        System.out.println("Similarity: " + ((Math.abs(averageLengthOfWords(arrayOfWords1)-averageLengthOfWords(arrayOfWords2)) * a) + (Math.abs(typeTokenRatio(arrayOfWords1)-typeTokenRatio(arrayOfWords2)) * b) + (Math.abs(hapLegoRatio(arrayOfWords1)-hapLegoRatio(arrayOfWords2)) * c) + (Math.abs(averageWordInSentence(arrayOfWords1, countOfSentences1)-averageWordInSentence(arrayOfWords2, countOfSentences2)) * d)));
+        System.out.println("Similarity: " + printSimilarity(arrayOfWords1,arrayOfWords2,countOfSentences1,countOfSentences2));
+
     }
 }
