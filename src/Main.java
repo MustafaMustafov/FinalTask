@@ -38,8 +38,7 @@ public class Main {
             for (int j = 0; j < i; j++) {
                 if (arrayOfWords[i].equalsIgnoreCase(arrayOfWords[j])) {
                     break;
-                }
-                else {
+                } else {
                     res++;
                 }
             }
@@ -70,8 +69,8 @@ public class Main {
         return averageCountOfWords;
     }
 
-    public static void printFeatures (String[] arrayOfWords, int countOfSentences) {
-        DecimalFormat df=new DecimalFormat("#.###");
+    public static void printFeatures(String[] arrayOfWords, int countOfSentences) {
+        DecimalFormat df = new DecimalFormat("#.###");
         System.out.println("  1. Avg. word length: " + df.format(averageLengthOfWords(arrayOfWords)));
         System.out.println("  2. Type-token ratio: " + df.format(typeTokenRatio(arrayOfWords)));
         System.out.println("  3. Hap-Leg ratio: " + df.format(hapLegoRatio(arrayOfWords)));
@@ -79,8 +78,8 @@ public class Main {
     }
 
     //abs(F1T1-F1T2) * 11 + abs(F2T1-F2T2) * 33 + abs(F3T1-F3T2) * 50 + abs(F4T1-F4T2) * 0.4;
-    public static String printSimilarity (String[] arrayOfWords1, String[] arrayOfWords2, int countOfSentences1, int countOfSentences2) {
-        DecimalFormat df= new DecimalFormat("#.###");
+    public static String printSimilarity(String[] arrayOfWords1, String[] arrayOfWords2, int countOfSentences1, int countOfSentences2) {
+        DecimalFormat df = new DecimalFormat("#.###");
         double feature1T1 = averageLengthOfWords(arrayOfWords1);
         double feature1T2 = averageLengthOfWords(arrayOfWords2);
         double feature2T1 = typeTokenRatio(arrayOfWords1);
@@ -89,10 +88,10 @@ public class Main {
         double feature3T2 = hapLegoRatio(arrayOfWords2);
         double feature4T1 = averageWordInSentence(arrayOfWords1, countOfSentences1);
         double feature4T2 = averageWordInSentence(arrayOfWords2, countOfSentences2);
-        double firstOperation = abs(feature1T1-feature1T2) * a;
-        double secondOperation = abs(feature2T1-feature2T2) * b;
-        double thirdOperation = abs(feature3T1-feature3T2) * c;
-        double fourthOperation  = abs(feature4T1-feature4T2) * d;
+        double firstOperation = abs(feature1T1 - feature1T2) * a;
+        double secondOperation = abs(feature2T1 - feature2T2) * b;
+        double thirdOperation = abs(feature3T1 - feature3T2) * c;
+        double fourthOperation = abs(feature4T1 - feature4T2) * d;
         double similarity = firstOperation + secondOperation + thirdOperation + fourthOperation;
         return "Similarity: " + df.format(firstOperation) + " + " + df.format(secondOperation) + " + " + df.format(thirdOperation) + " + " + df.format(fourthOperation) + " = " + df.format(similarity);
         //System.out.print(
@@ -104,13 +103,13 @@ public class Main {
         String firstText = scan.nextLine();
         String[] arrayOfWords1 = splitTextToWordsWithoutPunctuation(firstText);
         int countOfSentences1 = countOfSentences(firstText);
-        printFeatures(arrayOfWords1,countOfSentences1);
+        printFeatures(arrayOfWords1, countOfSentences1);
         System.out.println("Enter second text: ");
         String secondText = scan.nextLine();
         String[] arrayOfWords2 = splitTextToWordsWithoutPunctuation(secondText);
         int countOfSentences2 = countOfSentences(secondText);
-        printFeatures(arrayOfWords2,countOfSentences2);
-        System.out.println(printSimilarity(arrayOfWords1,arrayOfWords2,countOfSentences1,countOfSentences2));
+        printFeatures(arrayOfWords2, countOfSentences2);
+        System.out.println(printSimilarity(arrayOfWords1, arrayOfWords2, countOfSentences1, countOfSentences2));
 
     }
 }
