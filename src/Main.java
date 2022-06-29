@@ -68,6 +68,12 @@ public class Main {
         return averageCountOfWords;
     }
 
+    public static void printFeatures (String[] arrayOfWords, int countOfSentences) {
+        System.out.println("  1. Avg. word length: " + averageLengthOfWords(arrayOfWords));
+        System.out.println("  2. Type-token ratio: " + typeTokenRatio(arrayOfWords));
+        System.out.println("  3. Hap-Leg ratio: " + hapLegoRatio(arrayOfWords));
+        System.out.println("  4. Average Sentence length: " + averageWordInSentence(arrayOfWords, countOfSentences));
+    }
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -75,18 +81,16 @@ public class Main {
         String firstText = scan.nextLine();
         String[] arrayOfWords1 = splitTextToWordsWithoutPunctuation(firstText);
         int countOfSentences1 = countOfSentences(firstText);
-        System.out.println("  1. Avg. word length: " + averageLengthOfWords(arrayOfWords1));
+        /*System.out.println("  1. Avg. word length: " + averageLengthOfWords(arrayOfWords1));
         System.out.println("  2. Type-token ratio: " + typeTokenRatio(arrayOfWords1));
         System.out.println("  3. Hap-Leg ratio: " + hapLegoRatio(arrayOfWords1));
-        System.out.println("  4. Average Sentence length: " + averageWordInSentence(arrayOfWords1, countOfSentences1));
+        System.out.println("  4. Average Sentence length: " + averageWordInSentence(arrayOfWords1, countOfSentences1));*/
+        printFeatures(arrayOfWords1,countOfSentences1);
         System.out.println("Enter second text: ");
         String secondText = scan.nextLine();
         String[] arrayOfWords2 = splitTextToWordsWithoutPunctuation(secondText);
         int countOfSentences2 = countOfSentences(secondText);
-        System.out.println("  1. Avg. word length: " + averageLengthOfWords(arrayOfWords2));
-        System.out.println("  2. Type-token ratio: " + typeTokenRatio(arrayOfWords2));
-        System.out.println("  3. Hap-Leg ratio: " + hapLegoRatio(arrayOfWords2));
-        System.out.println("  4. Average Sentence length: " + averageWordInSentence(arrayOfWords2, countOfSentences2));
+        printFeatures(arrayOfWords2,countOfSentences2);
         System.out.println("Similarity: " + ((Math.abs(averageLengthOfWords(arrayOfWords1)-averageLengthOfWords(arrayOfWords2)) * a) + (Math.abs(typeTokenRatio(arrayOfWords1)-typeTokenRatio(arrayOfWords2)) * b) + (Math.abs(hapLegoRatio(arrayOfWords1)-hapLegoRatio(arrayOfWords2)) * c) + (Math.abs(averageWordInSentence(arrayOfWords1, countOfSentences1)-averageWordInSentence(arrayOfWords2, countOfSentences2)) * d)));
     }
 }
