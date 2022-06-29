@@ -37,9 +37,9 @@ public class Main {
         for (int i = 1; i < arrayOfWords.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (arrayOfWords[i].equalsIgnoreCase(arrayOfWords[j])) {
-                    continue;
+                    break;
                 }
-                if (i == j) {
+                else {
                     res++;
                 }
             }
